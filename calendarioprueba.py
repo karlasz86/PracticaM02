@@ -13,7 +13,7 @@ month_str_var = ""
 class PintaCalendario(ttk.Frame):
           
     def __init__(self, parent, **args):
-        ttk.Frame.__init__(self, parent, height=532, width=422)
+        ttk.Frame.__init__(self, parent, height=600, width=600)
         self.pack_propagate(0)
              
         
@@ -98,41 +98,7 @@ class PintaCalendario(ttk.Frame):
         self.month = self.month_names.index(self.month_str_var.get())
         self.m_cal = calendar.monthcalendar(self.year, self.month)
         
-        try:
-            for dates in self.m_cal:
-                for date in dates:
-                    if date ==0:
-                        continue
-                        
-                    self.delete_buttons(date)
-        
-        except AttributeError:
-            pass
-        
-        for dates in self.m_cal:
-            row= self.m_cal.index(dates) +1
-            for date in dates:
-                col = dates.index(date)
                 
-                if date == 0:
-                    continue
-
-    def get_date(self, clicked=None):
-        
-        clicked_button = clicked.widget
-        self.year = self.year_str_var.get() 
-        self.month = self.month_str_var.get()
-        date = clicked_button['text']
-        self.full_date = self.str_format % (date, month, year) 
-        print(self.full_date) 
-     
-        try:
-            self.widget.delete(0, END) 
-            self.widget.insert(0, self.full_date)
-            
-        except AttributeError:
-            pass 
-                   
      
 class MainApp(Tk):
     __displayCal = None
